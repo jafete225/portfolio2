@@ -1,15 +1,20 @@
-// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/',
   build: {
-    // Remova a opção external se não for necessário
+    outDir: 'dist',
     rollupOptions: {
-      // External pode ser utilizado se você tem bibliotecas externas que não quer incluir
-      // Se não houver necessidade, pode ser removido
-      // external: [], 
+      // Removi a configuração `input`, pois o Vite já trata isso por padrão.
+      // `external` removido, a menos que seja realmente necessário.
+    },
+  },
+  resolve: {
+    alias: {
+      '@': resolve('src'),
     },
   },
 });
